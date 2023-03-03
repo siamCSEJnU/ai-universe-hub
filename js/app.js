@@ -45,5 +45,32 @@ const toolDetails = async (toolId) => {
 };
 const showToolDetails = (tool) => {
   console.log(tool);
+
   const modalBody = document.getElementById("modal-body");
+  modalBody.innerHTML = `<div class="col-sm-6 mb-3 mb-sm-0">
+                  <div class="card">
+                  <div class="card-body">
+                    
+                    <p class="card-text fw-bold">
+                    ${tool.description}
+                    </p>
+                    <a href="#" class="btn btn-primary">Go somewhere</a>
+                  </div>
+                </div>
+              </div>
+              <div class="col-sm-6">
+                <div class="card">
+                  <div class="card-body">
+                  <img src="${tool.image_link[0]}" class="card-img-top " alt="..."  />
+                    <p class="card-text fw-bold text-center my-3">
+                      ${tool.input_output_examples[0].input}
+                    </p>
+                    <p class="card-text  text-center my-3">
+                      ${tool.input_output_examples[0].output}
+                    </p>
+                    
+                   
+                  </div>
+                </div>
+              </div>`;
 };
