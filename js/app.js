@@ -27,10 +27,15 @@ const displayTools = (tools) => {
       <h5 class="card-title">${tool.name}</h5>
     <div class="d-flex justify-content-between  my-4  ">
     <div class="d-flex justify-content-start gap-4 " ><p> <i class="fa-solid fa-calendar-days text-secondary"></i></p>
-    <p>${tool.published_in}</p></div><p><i class="fa-solid fa-arrow-right text-secondary"></i></p>
+    <p>${tool.published_in}</p></div><p><i class="fa-solid fa-arrow-right text-secondary" onclick="toolDetails('${tool.id}')" ></i></p>
     </div>
     </div>
   </div>`;
     toolsContainer.appendChild(toolDiv);
   });
+};
+
+//show tool details
+const toolDetails = (toolId) => {
+  console.log(toolId);
 };
