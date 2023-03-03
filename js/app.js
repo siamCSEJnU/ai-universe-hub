@@ -9,7 +9,7 @@ const displayTools = (tools) => {
   const toolsContainer = document.getElementById("tools-container");
   //   console.log(data);
   tools.forEach((tool) => {
-    console.log(tool);
+    // console.log(tool);
     const toolDiv = document.createElement("div");
     toolDiv.classList.add("col");
     toolDiv.innerHTML = `<div class="card p-4">
@@ -26,8 +26,8 @@ const displayTools = (tools) => {
       <hr class="my-4">
       <h5 class="card-title">${tool.name}</h5>
     <div class="d-flex justify-content-between  my-4  ">
-    <div class="d-flex justify-content-start gap-4 " ><p> <i class="fa-solid fa-calendar-days text-secondary"></i></p>
-    <p>${tool.published_in}</p></div><p><i class="fa-solid fa-arrow-right text-secondary" onclick="toolDetails('${tool.id}')" ></i></p>
+    <div class="d-flex justify-content-start gap-4 " ><p> <i class="fa-solid fa-calendar-days text-secondary fs-3"></i></p>
+    <p >${tool.published_in}</p></div><p><i class="fa-solid fa-arrow-right text-secondary fs-3" onclick="toolDetails('${tool.id}')" data-bs-toggle="modal" data-bs-target="#loadToolDetails" ></i></p>
     </div>
     </div>
   </div>`;
@@ -36,6 +36,14 @@ const displayTools = (tools) => {
 };
 
 //show tool details
-const toolDetails = (toolId) => {
-  console.log(toolId);
+const toolDetails = async (toolId) => {
+  //   console.log(toolId);
+  const url = `https://openapi.programming-hero.com/api/ai/tool/${toolId}`;
+  const res = await fetch(url);
+  const data = await res.json();
+  showToolDetails(data.data);
+};
+const showToolDetails = (tool) => {
+  console.log(tool);
+  const modalBody = document.getElementById("modal-body");
 };
