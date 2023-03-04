@@ -150,8 +150,10 @@ const showToolDetails = (tool) => {
                       : "picsum.photos/200/300?nocache=<?php echo microtime()"
                   }" class="card-img-top " alt="..."  />
                   <p class="position-absolute top-0 start-50 translate-middle bg-danger text-white rounded-2 p-2">${
-                    tool.accuracy.score ? tool.accuracy.score : "Unfounded"
-                  }<span> accuracy</span></p>
+                    tool.accuracy.score
+                      ? tool.accuracy.score * 100
+                      : "Unfounded"
+                  }<span>% accuracy</span></p>
 
                   
                     <p class="card-text fw-bold text-center mt-5">
