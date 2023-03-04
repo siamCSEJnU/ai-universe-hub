@@ -1,12 +1,15 @@
+//loading first 6 data
 const loadData = async () => {
   const seeMore = document.getElementById("see-more");
   seeMore.classList.remove("d-none");
   const url = "https://openapi.programming-hero.com/api/ai/tools";
   const res = await fetch(url);
   const data = await res.json();
+  //   console.log(data.data.tools[0]);
   displayTools(data.data.tools.slice(0, 6));
 };
 
+//displaying the tools
 const displayTools = (tools) => {
   const toolsContainer = document.getElementById("tools-container");
   toolsContainer.innerHTML = "";
@@ -30,7 +33,7 @@ const displayTools = (tools) => {
       <h5 class="card-title">${tool.name}</h5>
     <div class="d-flex justify-content-between  my-4  ">
     <div class="d-flex justify-content-start gap-4 " ><p> <i class="fa-solid fa-calendar-days text-secondary fs-3"></i></p>
-    <p >${tool.published_in}</p></div><p><i class="fa-solid fa-arrow-right text-secondary fs-3" onclick="toolDetails('${tool.id}')" data-bs-toggle="modal" data-bs-target="#loadToolDetails" ></i></p>
+    <p class="container-date">${tool.published_in}</p></div><p><i class="fa-solid fa-arrow-right text-secondary fs-3" onclick="toolDetails('${tool.id}')" data-bs-toggle="modal" data-bs-target="#loadToolDetails" ></i></p>
     </div>
     </div>
   </div>`;
@@ -156,7 +159,7 @@ const showToolDetails = (tool) => {
               </div>`;
 };
 
-//show all funciton
+//show all tools
 const loadDataAll = async () => {
   const seeMore = document.getElementById("see-more");
   seeMore.classList.add("d-none");
@@ -164,4 +167,29 @@ const loadDataAll = async () => {
   const res = await fetch(url);
   const data = await res.json();
   displayTools(data.data.tools);
+};
+
+//sorting cards upon date
+const sortByDate = async () => {
+  const seeMore = document.getElementById("see-more");
+  const url = "https://openapi.programming-hero.com/api/ai/tools";
+  const res = await fetch(url);
+  const data = await res.json();
+
+  // adding a date property to each tool object
+  data.data.tools.forEach((tool) => {
+    tool.date = new Date(tool.published_in).getTime();
+  });
+
+  // sorting the tools by date in ascending order
+  const sortedTools = data.data.tools.sort((a, b) => a.date - b.date);
+  displayTools(sortedTools);
+  seeMore.classList.add("d-none");
+
+  //   seeMore.addEventListener("click", () => {
+  //     // display all sorted tools when seeMore button is clicked
+  //     displayTools(sortedTools);
+  //     // hide seeMore button
+  //     seeMore.style.display = "none";
+  //   });
 };
