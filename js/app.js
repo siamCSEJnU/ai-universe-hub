@@ -47,13 +47,20 @@ const showToolDetails = (tool) => {
   console.log(tool);
 
   const modalBody = document.getElementById("modal-body");
-  modalBody.innerHTML = `<div class="col-sm-6 mb-3 mb-sm-0">
+  modalBody.innerHTML = `<div class="col-sm-6 mb-3 mb-sm-0 ">
                   <div class="card">
-                  <div class="card-body">
+                  <div class="card-body" style="background: rgba(235, 87, 87, 0.05);">
                     
                     <p class="card-text fw-bold">
                     ${tool.description}
                     </p>
+                    <div class="d-flex justify-content-between gap-2 my-5 text-warning-emphasis">
+                     <div class="bg-white  p-2 rounded-4">
+                      <p>${tool.pricing[0].price}</p><p>${tool.pricing[0].plan}</p></div>
+                     <div class="bg-white p-2  rounded-4 "><p>${tool.pricing[1].price}</p><p>${tool.pricing[1].plan}</p></div>
+                     <div class="bg-white p-2  rounded-4"><p>${tool.pricing[2].price}<p>${tool.pricing[2].plan}</p></p></div>
+                    </div>
+                    
                     <a href="#" class="btn btn-primary">Go somewhere</a>
                   </div>
                 </div>
@@ -62,7 +69,7 @@ const showToolDetails = (tool) => {
                 <div class="card">
                   <div class="card-body">
                   <img src="${tool.image_link[0]}" class="card-img-top " alt="..."  />
-                    <p class="card-text fw-bold text-center my-3">
+                    <p class="card-text fw-bold text-center my-4">
                       ${tool.input_output_examples[0].input}
                     </p>
                     <p class="card-text  text-center my-3">
