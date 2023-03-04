@@ -66,30 +66,28 @@ const showToolDetails = (tool) => {
                   <div class="card-body" style="background: rgba(235, 87, 87, 0.05);">
                     
                     <p class="card-text fw-bold">
-                    ${tool.description ? tool.description : "data not found"}
+                    ${
+                      tool.description !== null
+                        ? tool.description
+                        : "data not found"
+                    }
                     </p>
                     <div class="d-flex justify-content-between gap-2 my-3 text-warning-emphasis">
                      <div class="bg-white  p-2 rounded-4">
                       <p class="text-center">${
-                        tool.pricing[0].price
-                          ? tool.pricing[0].price
-                          : "data not found"
+                        tool.pricing ? tool.pricing[0]?.price : "data not found"
                       }</p><p class="text-center">${
-    tool.pricing[0].plan ? tool.pricing[0].plan : "data not found"
+    tool.pricing ? tool.pricing[0]?.plan : "data not found"
   }</p></div>
                      <div class="bg-white p-2  rounded-4 "><p class="text-center">${
-                       tool.pricing[1].price
-                         ? tool.pricing[1].price
-                         : "data not found"
+                       tool.pricing ? tool.pricing[1]?.price : "data not found"
                      }</p><p class="text-center">${
-    tool.pricing[1].plan ? tool.pricing[1].plan : "data not found"
+    tool.pricing ? tool.pricing[1]?.plan : "data not found"
   }</p></div>
                      <div class="bg-white p-2  rounded-4"><p class="text-center">${
-                       tool.pricing[2].price
-                         ? tool.pricing[2].price
-                         : "data not found"
+                       tool.pricing ? tool.pricing[2]?.price : "data not found"
                      }<p class="text-center">${
-    tool.pricing[2].plan ? tool.pricing[2].plan : "data not found"
+    tool.pricing ? tool.pricing[2]?.plan : "data not found"
   }</p></p></div>
                     </div>
                     <div class="d-flex justify-content-between">
@@ -97,17 +95,17 @@ const showToolDetails = (tool) => {
                    <p class="fw-bold">Features</p>
                     <ul class="text-success-emphasis">
                      <li>${
-                       tool.features[1].feature_name
+                       tool.features[1].feature_name !== null
                          ? tool.features[1].feature_name
                          : "no data found"
                      }</li>
                      <li>${
-                       tool.features[2].feature_name
+                       tool.features[2].feature_name !== null
                          ? tool.features[2].feature_name
                          : "no data found"
                      }</li>
                      <li>${
-                       tool.features[3].feature_name
+                       tool.features[3].feature_name !== null
                          ? tool.features[3].feature_name
                          : "no data found"
                      }</li>
@@ -118,17 +116,17 @@ const showToolDetails = (tool) => {
                   <p class="fw-bold">Interogations</p>
                   <ul class="text-success-emphasis">
                   <li>${
-                    tool.integrations[0]
+                    tool.integrations && tool.integrations[0]
                       ? tool.integrations[0]
                       : "not available"
                   }</li>
                   <li>${
-                    tool.integrations[1]
+                    tool.integrations && tool.integrations[1]
                       ? tool.integrations[1]
                       : "not available"
                   }</li>
                   <li>${
-                    tool.integrations[2]
+                    tool.integrations && tool.integrations[2]
                       ? tool.integrations[2]
                       : "not available"
                   }</li>
@@ -145,12 +143,12 @@ const showToolDetails = (tool) => {
                 <div class="card">
                   <div class="card-body ">
                   <img src="${
-                    tool.image_link[0]
+                    tool.image_link[0] !== null
                       ? tool.image_link[0]
                       : "picsum.photos/200/300?nocache=<?php echo microtime()"
                   }" class="card-img-top " alt="..."  />
                   <p class="position-absolute top-0 start-50 translate-middle bg-danger text-white rounded-2 p-2">${
-                    tool.accuracy.score
+                    tool.accuracy.score !== null
                       ? tool.accuracy.score * 100
                       : "Unfounded"
                   }<span>% accuracy</span></p>
@@ -158,6 +156,8 @@ const showToolDetails = (tool) => {
                   
                     <p class="card-text fw-bold text-center mt-5">
                       ${
+                        tool.input_output_examples &&
+                        tool.input_output_examples[0] &&
                         tool.input_output_examples[0].input
                           ? tool.input_output_examples[0].input
                           : "No! Not Yet! Take a break!!!"
@@ -165,6 +165,8 @@ const showToolDetails = (tool) => {
                     </p>
                     <p class="card-text  text-center ms-2 mb-3">
                       ${
+                        tool.input_output_examples &&
+                        tool.input_output_examples[0] &&
                         tool.input_output_examples[0].output
                           ? tool.input_output_examples[0].output
                           : "No! Not Yet! Take a break!!!"
