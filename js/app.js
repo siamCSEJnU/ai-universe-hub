@@ -1,13 +1,16 @@
 const loadData = async () => {
+  const seeMore = document.getElementById("see-more");
+  seeMore.classList.remove("d-none");
   const url = "https://openapi.programming-hero.com/api/ai/tools";
   const res = await fetch(url);
   const data = await res.json();
-  displayTools(data.data.tools);
+  displayTools(data.data.tools.slice(0, 6));
 };
 
 const displayTools = (tools) => {
   const toolsContainer = document.getElementById("tools-container");
-  //   console.log(data);
+  toolsContainer.innerHTML = "";
+
   tools.forEach((tool) => {
     // console.log(tool);
     const toolDiv = document.createElement("div");
@@ -128,7 +131,7 @@ const showToolDetails = (tool) => {
                     tool.image_link[0]
                   }" class="card-img-top " alt="..."  />
                   <p class="position-absolute top-0 start-50 translate-middle bg-danger text-white rounded-2 p-2">${
-                    tool.accuracy.score
+                    tool.accuracy.score ? tool.accuracy.score : "Unfounded"
                   }<span> accuracy</span></p>
 
                   
@@ -151,4 +154,14 @@ const showToolDetails = (tool) => {
                   </div>
                 </div>
               </div>`;
+};
+
+//show all funciton
+const loadDataAll = async () => {
+  const seeMore = document.getElementById("see-more");
+  seeMore.classList.add("d-none");
+  const url = "https://openapi.programming-hero.com/api/ai/tools";
+  const res = await fetch(url);
+  const data = await res.json();
+  displayTools(data.data.tools);
 };
