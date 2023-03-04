@@ -45,6 +45,8 @@
         </div>
       </section>
 
+      <!-- <div style="background-image: url(${tool.image_link[0]});" class="position-relative"><p class="position-absolute top-0 start-100 translate-middle bg-danger rounded-3  p-2 ">${tool.accuracy.score}<span>accuracy</span></p></div> -->
+
       <!-- modal section  -->
 
       <div
@@ -54,16 +56,19 @@
         aria-labelledby="loadToolDetailsLabel"
         aria-hidden="true"
       >
-        <div class="modal-dialog modal-dialog modal-dialog-centered modal-lg">
+        <div
+          class="modal-dialog modal-dialog modal-dialog-centered modal-lg position-relative"
+        >
           <div class="modal-content">
             <div id="modal-body" class="modal-body row"></div>
             <div class="modal-footer">
               <button
                 type="button"
-                class="btn btn-secondary"
+                class="btn position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger"
                 data-bs-dismiss="modal"
               >
-                Close
+                <!-- Close -->
+                <i class="fa-solid fa-xmark fs-4"></i>
               </button>
             </div>
           </div>
