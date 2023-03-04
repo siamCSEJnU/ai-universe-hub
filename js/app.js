@@ -2,6 +2,8 @@
 const loadData = async () => {
   const seeMore = document.getElementById("see-more");
   seeMore.classList.remove("d-none");
+  // start loader
+  toggleSpinner(true);
   const url = "https://openapi.programming-hero.com/api/ai/tools";
   const res = await fetch(url);
   const data = await res.json();
@@ -39,15 +41,21 @@ const displayTools = (tools) => {
   </div>`;
     toolsContainer.appendChild(toolDiv);
   });
+  // stop loader
+  toggleSpinner(false);
 };
 
 //show tool details
 const toolDetails = async (toolId) => {
   //   console.log(toolId);
+  // start loader
+  toggleSpinner(true);
   const url = `https://openapi.programming-hero.com/api/ai/tool/${toolId}`;
   const res = await fetch(url);
   const data = await res.json();
   showToolDetails(data.data);
+  // stop loader
+  toggleSpinner(false);
 };
 const showToolDetails = (tool) => {
   console.log(tool);
@@ -185,6 +193,8 @@ const sortByDate = async () => {
   const sortedTools = data.data.tools.sort((a, b) => a.date - b.date);
   displayTools(sortedTools);
   seeMore.classList.add("d-none");
+  //stop loader
+  toggleSpinner(false);
 
   //   seeMore.addEventListener("click", () => {
   //     // display all sorted tools when seeMore button is clicked
@@ -192,4 +202,14 @@ const sortByDate = async () => {
   //     // hide seeMore button
   //     seeMore.style.display = "none";
   //   });
+};
+
+//toggle spinner
+const toggleSpinner = (isLoading) => {
+  const loader = document.getElementById("loader");
+  if (isLoading) {
+    loader.classList.remove("d-none");
+  } else {
+    loader.classList.add("d-none");
+  }
 };
