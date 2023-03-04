@@ -54,14 +54,34 @@ const showToolDetails = (tool) => {
                     <p class="card-text fw-bold">
                     ${tool.description}
                     </p>
-                    <div class="d-flex justify-content-between gap-2 my-5 text-warning-emphasis">
+                    <div class="d-flex justify-content-between gap-2 my-3 text-warning-emphasis">
                      <div class="bg-white  p-2 rounded-4">
-                      <p>${tool.pricing[0].price}</p><p>${tool.pricing[0].plan}</p></div>
-                     <div class="bg-white p-2  rounded-4 "><p>${tool.pricing[1].price}</p><p>${tool.pricing[1].plan}</p></div>
-                     <div class="bg-white p-2  rounded-4"><p>${tool.pricing[2].price}<p>${tool.pricing[2].plan}</p></p></div>
+                      <p class="text-center">${tool.pricing[0].price}</p><p class="text-center">${tool.pricing[0].plan}</p></div>
+                     <div class="bg-white p-2  rounded-4 "><p class="text-center">${tool.pricing[1].price}</p><p class="text-center">${tool.pricing[1].plan}</p></div>
+                     <div class="bg-white p-2  rounded-4"><p class="text-center">${tool.pricing[2].price}<p class="text-center">${tool.pricing[2].plan}</p></p></div>
                     </div>
+                    <div class="d-flex justify-content-between">
+                   <div>
+                   <p class="fw-bold">Features</p>
+                    <ul class="text-success-emphasis">
+                     <li>${tool.features[1].feature_name}</li>
+                     <li>${tool.features[2].feature_name}</li>
+                     <li>${tool.features[3].feature_name}</li>
+                     
+                     </ul>
+                     </div>
+                    <div>
+                  <p class="fw-bold">Interogations</p>
+                  <ul class="text-success-emphasis">
+                  <li>${tool.integrations[0]}</li>
+                  <li>${tool.integrations[1]}</li>
+                  <li>${tool.integrations[2]}</li>
+                  
+                    </ul>
+                   </div>
+                  </div>
                     
-                    <a href="#" class="btn btn-primary">Go somewhere</a>
+                    
                   </div>
                 </div>
               </div>
@@ -72,7 +92,7 @@ const showToolDetails = (tool) => {
                     <p class="card-text fw-bold text-center my-4">
                       ${tool.input_output_examples[0].input}
                     </p>
-                    <p class="card-text  text-center my-3">
+                    <p class="card-text  text-center my-5">
                       ${tool.input_output_examples[0].output}
                     </p>
                     
