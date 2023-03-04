@@ -17,7 +17,7 @@ const displayTools = (tools) => {
   toolsContainer.innerHTML = "";
 
   tools.forEach((tool) => {
-    // console.log(tool);
+    console.log(tool);
     const toolDiv = document.createElement("div");
     toolDiv.classList.add("col");
     toolDiv.innerHTML = `<div class="card p-4">
@@ -58,7 +58,7 @@ const toolDetails = async (toolId) => {
   toggleSpinner(false);
 };
 const showToolDetails = (tool) => {
-  console.log(tool);
+  //   console.log(tool);
 
   const modalBody = document.getElementById("modal-body");
   modalBody.innerHTML = `<div class="col-sm-6 mb-3g mb-sm-0 ">
@@ -66,24 +66,30 @@ const showToolDetails = (tool) => {
                   <div class="card-body" style="background: rgba(235, 87, 87, 0.05);">
                     
                     <p class="card-text fw-bold">
-                    ${tool.description}
+                    ${tool.description ? tool.description : "data not found"}
                     </p>
                     <div class="d-flex justify-content-between gap-2 my-3 text-warning-emphasis">
                      <div class="bg-white  p-2 rounded-4">
                       <p class="text-center">${
                         tool.pricing[0].price
+                          ? tool.pricing[0].price
+                          : "data not found"
                       }</p><p class="text-center">${
-    tool.pricing[0].plan
+    tool.pricing[0].plan ? tool.pricing[0].plan : "data not found"
   }</p></div>
                      <div class="bg-white p-2  rounded-4 "><p class="text-center">${
                        tool.pricing[1].price
+                         ? tool.pricing[1].price
+                         : "data not found"
                      }</p><p class="text-center">${
-    tool.pricing[1].plan
+    tool.pricing[1].plan ? tool.pricing[1].plan : "data not found"
   }</p></div>
                      <div class="bg-white p-2  rounded-4"><p class="text-center">${
                        tool.pricing[2].price
+                         ? tool.pricing[2].price
+                         : "data not found"
                      }<p class="text-center">${
-    tool.pricing[2].plan
+    tool.pricing[2].plan ? tool.pricing[2].plan : "data not found"
   }</p></p></div>
                     </div>
                     <div class="d-flex justify-content-between">
@@ -140,6 +146,8 @@ const showToolDetails = (tool) => {
                   <div class="card-body ">
                   <img src="${
                     tool.image_link[0]
+                      ? tool.image_link[0]
+                      : "picsum.photos/200/300?nocache=<?php echo microtime()"
                   }" class="card-img-top " alt="..."  />
                   <p class="position-absolute top-0 start-50 translate-middle bg-danger text-white rounded-2 p-2">${
                     tool.accuracy.score ? tool.accuracy.score : "Unfounded"
@@ -195,13 +203,6 @@ const sortByDate = async () => {
   seeMore.classList.add("d-none");
   //stop loader
   toggleSpinner(false);
-
-  //   seeMore.addEventListener("click", () => {
-  //     // display all sorted tools when seeMore button is clicked
-  //     displayTools(sortedTools);
-  //     // hide seeMore button
-  //     seeMore.style.display = "none";
-  //   });
 };
 
 //toggle spinner
